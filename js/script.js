@@ -2,7 +2,7 @@
  * Created by kozin on 27.09.2016.
  */
 
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', function () {
     var hours = document.getElementById("hours");
     var minutes = document.getElementById("minutes");
     var seconds = document.getElementById("seconds");
@@ -11,14 +11,14 @@ window.onload = function () {
     var h = 0;
     var m = 0;
     var s = 0;
-    var right = true;
+    var clearId;
 
     hours.innerHTML = h;
     minutes.innerHTML = m;
     seconds.innerHTML = s;
 
     var timer = function () {
-        setInterval(function () {
+       clearId = setInterval(function () {
             s++;
             if (s == 60) {
                 s = 0;
@@ -53,13 +53,11 @@ window.onload = function () {
 
         }, 1000);
     };
-
     var timerStop = function () {
-        console.log("я работаю!");
-        clearInterval(timer);
+        clearInterval(clearId);
     };
 
     start.addEventListener("click", timer);
     stop.addEventListener("click", timerStop);
 
-};
+});
